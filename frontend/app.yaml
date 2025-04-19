@@ -1,14 +1,15 @@
-runtime: nodejs20
-service: fe-196
-instance_class: F1
+steps:
+  - name: 'gcr.io/cloud-builders/npm'
+    dir: 'frontend'
+    args: ['install']
 
-handlers:
-  - url: /
-    static_files: build/index.html
-    upload: build/index.html
+  - name: 'gcr.io/cloud-builders/npm'
+    dir: 'frontend'
+    args: ['run', 'build']
 
-  - url: /(.*)
-    static_files: build/\1
-    upload: build/(.*)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    dir: 'frontend'
+    args: ['app', 'deploy', '--quiet']
 
-default_expiration: "1h"
+options:
+  logging: CLOUD_LOGGING_ONLY
