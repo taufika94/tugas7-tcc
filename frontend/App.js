@@ -1,10 +1,10 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import NotesList from "./components/NotesList";
-import AddNotes from "./components/AddNotes";
-import EditNotes from "./components/EditNotes";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import GlobalStyles from "./styles/GlobalStyles";
+import NotesList from "./src/components/NotesList";
+import AddNotes from "./src/components/AddNotes";
+import EditNotes from "./src/components/EditNotes";
+import Header from "./src/components/Header";
+import Footer from "./src/components/Footer";
+import GlobalStyles from "./src/styles/GlobalStyles";
 
 function App() {
   return (
