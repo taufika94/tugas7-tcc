@@ -1,29 +1,35 @@
 steps:
-  # Step 1: Install dependencies
-  - name: "gcr.io/cloud-builders/npm"
+  # Step 1: Set Node.js version and install dependencies
+  - name: "gcr.io/cloud-builders/nodejs"
     entrypoint: bash
     args:
       - -c
       - |
-        if [ ! -d "node_modules" ]; then
+        echo "Using Node.js 20.x"
+        nvm use 20
+        if [ ! -d "frontend/node_modules" ]; then
           echo "Installing dependencies..."
+          cd frontend
           npm ci
         else
           echo "Skipping npm install, node_modules exists."
         fi
-    dir: "frontend/src"
     volumes:
       - name: "npm-cache"
         path: /root/.npm
 
   # Step 2: Build frontend dengan injeksi VITE_API_URL
-  - name: "gcr.io/cloud-builders/npm"
+  - name: "gcr.io/cloud-builders/nodejs"
     entrypoint: bash
     args:
       - -c
       - |
+        echo "Using Node.js 20.x for build"
+        nvm use 20
+        cd frontend
         npm run build
-    dir: "frontend/src"
+    env:
+      - VITE_API_URL=$VITE_API_URL # Pastikan variabel ini sudah diatur di Cloud Build
     volumes:
       - name: "npm-cache"
         path: /root/.npm
@@ -32,7 +38,7 @@ steps:
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
     args: ["app", "deploy", "--quiet"]
-    dir: "frontend/src"
+    dir: "frontend/dist" # Direktori build React biasanya adalah 'build' atau 'dist'
 
 options:
   logging: CLOUD_LOGGING_ONLY
