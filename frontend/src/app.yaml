@@ -1,19 +1,14 @@
 runtime: nodejs20
-service: fe-196  # <--- Sesuaikan nama servicenya
-
+service: fe-196  # ganti nama service kalau mau
 instance_class: F1
 
 handlers:
-  # Semua request ke / akan dikasih index.html
   - url: /
-    static_files: build/index.html
-    upload: build/index.html
+    static_files: dist/index.html
+    upload: dist/index.html
 
-  # Semua file statis di-build folder dilayani normal
   - url: /(.*)
-    static_files: build/\1
-    upload: build/(.*)
-    secure: always  # opsional, otomatis redirect ke https
+    static_files: dist/\1
+    upload: dist/(.*)
 
-# Biar cache browser 1 jam
 default_expiration: "1h"
