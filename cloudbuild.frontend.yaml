@@ -1,5 +1,13 @@
 steps:
-  # Step 1: Deploy langsung ke App Engine tanpa membangun Docker image
+  # Step 1: Build proyek React (pastikan ini berhasil sebelum deployment)
+  - name: 'Build React App'
+    command: |
+      cd frontend
+      npm install
+      npm run build
+    id: frontend
+
+  # Step 2: Deploy ke App Engine dari direktori build
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -7,7 +15,7 @@ steps:
       - deploy
       - app.yaml
       - '--quiet'
-    dir: 'frontend'  # Ganti dengan direktori frontend yang berisi app.yaml dan file HTML kamum
+    dir: 'frontend' # Deploy dari direktori build  # Ganti dengan direktori frontend yang berisi app.yaml dan file HTML kamum
 
 options:
   logging: CLOUD_LOGGING_ONLY  # Opsional: hanya mencatat log ke Google Cloud Logging
