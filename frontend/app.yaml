@@ -13,7 +13,7 @@ handlers:
     expiration: "1h"
 
   - url: /.*
-    static_files: build/index.html
-    upload: build/index.html
+    static_files: build/index.js
+    upload: build/index.js
 
 default_expiration: "1h"  # Waktu cache default
