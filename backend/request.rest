@@ -1,0 +1,25 @@
+GET http://localhost:5001/notes
+
+###
+GET http://localhost:5001/notes/1
+
+###
+POST  http://localhost:5001/notes
+Content-Type: application/json
+
+{
+    "judul" : "FIKA",
+    "content" : "taufika@gmail.com"
+}
+
+###
+PATCH   http://localhost:5001/notes/1
+Content-Type: application/json
+
+{
+    "judul" : "FIKAA",
+    "content" : "taufika@gmail.com"
+}
+
+###
+DELETE  http://localhost:5001/notes/11
