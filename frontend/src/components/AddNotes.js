@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import styled from 'styled-components';
-import { BASE_URL } from "../../utils";
+import { BASE_URL } from "../utils";
 
 const FormContainer = styled.div`
     background: white;

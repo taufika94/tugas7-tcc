@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import styled from 'styled-components';
-import { BASE_URL } from "../../utils";
+import { BASE_URL } from "../utils";
 
 const TableContainer = styled.div`
     background: white;
