@@ -1,14 +1,19 @@
-runtime: python39  # Menggunakan runtime standar untuk hosting HTML statis
-service: fe-196  # Nama layanan App Engine, bisa diubah sesuai kebutuhan
-instance_class: F1  # Kelas instance untuk App Engine (F1 adalah kelas standar yang ringan)
+runtime: python39
+service: fe-196
+instance_class: F1
 
 handlers:
-  - url: /
-    static_files: index.html
-    upload: index.html
+  - url: /static
+    static_dir: build/static
+    expiration: "30d"
 
-  - url: /(.*)
-    static_files: \1
-    upload: (.*)
+  - url: /(.*\.(json|txt|xml|ico|png|jpg|jpeg|gif|svg|js|css))$
+    static_files: build/\1
+    upload: build/(.*\.(json|txt|xml|ico|png|jpg|jpeg|gif|svg|js|css))$
+    expiration: "1h"
+
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
 
 default_expiration: "1h"  # Waktu cache default
