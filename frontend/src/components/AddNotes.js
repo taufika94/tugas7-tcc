@@ -13,7 +13,8 @@ const FormContainer = styled.div`
 `;
 
 const AddNotes = () => {
-    const [judul, setJudul] = useState("");
+    const [title, setJudul] = useState("");
+    const [category, setCategory] = useState("");
     const [content, setContent] = useState("");
     const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const AddNotes = () => {
         e.preventDefault () ;
         try{
             await axios.post(`${BASE_URL}/notes`, {
-                judul,
+                title,
                 content
             });
             navigate("/");
@@ -38,7 +39,13 @@ const AddNotes = () => {
                 <div className="field">
                     <label className="label">Judul</label>
                     <div className="control">
-                        <input type="text" className="input" value={judul} onChange={(e) => setJudul(e.target.value)} placeholder='Judul' />
+                        <input type="text" className="input" value={title} onChange={(e) => setJudul(e.target.value)} placeholder='Judul' />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Kategori</label>
+                    <div className="control">
+                        <input type="text" className="input" value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Content' />
                     </div>
                 </div>
                 <div className="field">
