@@ -18,7 +18,7 @@ steps:
    # Step 3: Deploy ke App Engine
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     args: ["gcloud", "app", "deploy", "--quiet"]
-    dir: "frontend/src"
+    dir: "frontend/build"
 
 
 options:
