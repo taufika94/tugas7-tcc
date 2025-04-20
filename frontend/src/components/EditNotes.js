@@ -13,7 +13,8 @@ const FormContainer = styled.div`
 `;
 
 const EditNotes = () => {
-    const[judul,setJudul] = useState("");
+    const[title,setJudul] = useState("");
+    const[category,setCategory] = useState("");
     const[content,setContent] = useState("");
     const navigate = useNavigate();
     const{id} = useParams () ;
@@ -26,7 +27,8 @@ const EditNotes = () => {
         e.preventDefault () ;
         try{
             await axios.patch(`${BASE_URL}/notes/${id}`, {
-                judul,
+                title,
+                category,
                 content,
             });
             navigate("/");
@@ -39,6 +41,7 @@ const EditNotes = () => {
     const getNotesById = async () => {
         const response = await axios.get(`${BASE_URL}/notes/${id}`);
         setJudul(response.data.judul);
+        setCategory(response.data.category);
         setContent(response.data.content);
     };
 
@@ -48,7 +51,13 @@ const EditNotes = () => {
                 <div className="field">
                     <label className="label">Judul</label>
                     <div className="control">
-                        <input type="text" className="input" value={judul} onChange={(e) => setJudul(e.target.value)} placeholder='Judul' />
+                        <input type="text" className="input" value={title} onChange={(e) => setJudul(e.target.value)} placeholder='Judul' />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Kategory</label>
+                    <div className="control">
+                        <input type="text" className="input" value={category} onChange={(e) => setContent(e.target.value)} placeholder='Kategory' />
                     </div>
                 </div>
                 <div className="field">

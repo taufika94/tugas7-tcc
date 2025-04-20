@@ -45,7 +45,7 @@ const AddNotes = () => {
                 <div className="field">
                     <label className="label">Kategori</label>
                     <div className="control">
-                        <input type="text" className="input" value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Content' />
+                        <input type="text" className="input" value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Kategory' />
                     </div>
                 </div>
                 <div className="field">
