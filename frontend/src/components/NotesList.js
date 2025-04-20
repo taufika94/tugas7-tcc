@@ -42,7 +42,6 @@ const NotesList = () => {
                     <tr>
                         <th>No</th>
                         <th>Judul</th>
-                        <th>Kategori</th>
                         <th>Content</th>
                         <th>Actions</th>
                     </tr>
@@ -51,8 +50,7 @@ const NotesList = () => {
                     {notes.map((notes,index) => (
                     <tr key = {notes.id}>
                         <td>{index + 1}</td>
-                        <td>{notes.title}</td>
-                        <td>{notes.category}</td>
+                        <td>{notes.judul}</td>
                         <td>{notes.content}</td>
                         <td>
                             <Link to={`edit/${notes.id}`} className = "button is small is-info"><FaEdit /></Link>
